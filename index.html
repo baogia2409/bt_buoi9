@@ -1,0 +1,212 @@
+<!doctype html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Bài tập DOM</title>
+
+    <!-- Tailwind CSS qua CDN -->
+    <script src="https://cdn.tailwindcss.com/3.4.17"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            fontFamily: {
+              sans: ['"Be Vietnam Pro"', "system-ui", "sans-serif"],
+            },
+          },
+        },
+      };
+    </script>
+
+    <!-- Font hỗ trợ tiếng Việt -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <style>
+      /* dom.js thêm class "info" vào #pThongBao sau khi tính lương,
+         nên cần định nghĩa lại giao diện cho class này */
+      #pThongBao.info {
+        background-color: #d1fae5;
+        color: #065f46;
+        font-size: 1.15rem;
+        font-weight: 700;
+        text-align: center;
+      }
+    </style>
+  </head>
+
+  <body class="bg-slate-100 px-4 pb-16 pt-10 font-sans text-slate-800">
+    <main class="mx-auto max-w-2xl">
+      <!-- Bài 1: Tính lương -->
+      <section
+        class="mb-5 rounded-2xl border border-l-4 border-slate-200 border-l-indigo-600 bg-white p-6 shadow-md"
+      >
+        <h2 class="mb-4 text-lg font-semibold">Tính lương nhân viên</h2>
+        <div class="flex flex-wrap gap-2.5">
+          <input
+            id="luongNgay"
+            type="number"
+            placeholder="Nhập lương một ngày"
+            class="min-w-[140px] flex-1 rounded-lg border border-slate-200 bg-slate-50 px-3.5 py-2.5 outline-none transition focus:border-indigo-600 focus:bg-white focus:ring-4 focus:ring-indigo-100"
+          />
+          <input
+            id="soNgayLamViec"
+            type="number"
+            placeholder="Nhập số ngày làm việc"
+            class="min-w-[140px] flex-1 rounded-lg border border-slate-200 bg-slate-50 px-3.5 py-2.5 outline-none transition focus:border-indigo-600 focus:bg-white focus:ring-4 focus:ring-indigo-100"
+          />
+          <button
+            id="btnTinhLuong"
+            class="rounded-lg bg-indigo-600 px-5 py-2.5 font-semibold text-white transition hover:bg-indigo-700 active:translate-y-px max-sm:w-full"
+          >
+            Tính lương
+          </button>
+        </div>
+        <p
+          id="pThongBao"
+          class="test mt-4 rounded-lg bg-indigo-50 px-4 py-3 font-medium text-indigo-800 empty:hidden"
+        ></p>
+      </section>
+
+      <!-- Bài 2: Tổng 2 ký số -->
+      <section
+        class="mb-5 rounded-2xl border border-l-4 border-slate-200 border-l-indigo-600 bg-white p-6 shadow-md"
+      >
+        <h2 class="mb-4 text-lg font-semibold">Tính tổng 2 ký số</h2>
+        <div class="flex flex-wrap gap-2.5">
+          <input
+            id="soKySo"
+            type="number"
+            placeholder="Nhập số có 2 chữ số"
+            class="min-w-[140px] flex-1 rounded-lg border border-slate-200 bg-slate-50 px-3.5 py-2.5 outline-none transition focus:border-indigo-600 focus:bg-white focus:ring-4 focus:ring-indigo-100"
+          />
+          <button
+            id="btnTinhTongKySo"
+            class="rounded-lg bg-indigo-600 px-5 py-2.5 font-semibold text-white transition hover:bg-indigo-700 active:translate-y-px max-sm:w-full"
+          >
+            Tính tổng
+          </button>
+        </div>
+        <p
+          id="pKetQuaKySo"
+          class="mt-4 rounded-lg bg-indigo-50 px-4 py-3 font-medium text-indigo-800 empty:hidden"
+        ></p>
+      </section>
+
+      <!-- Bài 3: Quy đổi tiền -->
+      <section
+        class="mb-5 rounded-2xl border border-l-4 border-slate-200 border-l-indigo-600 bg-white p-6 shadow-md"
+      >
+        <h2 class="mb-4 text-lg font-semibold">Quy đổi tiền</h2>
+        <div class="flex flex-wrap gap-2.5">
+          <input
+            id="soTien"
+            type="number"
+            placeholder="Nhập số tiền USD"
+            class="min-w-[140px] flex-1 rounded-lg border border-slate-200 bg-slate-50 px-3.5 py-2.5 outline-none transition focus:border-indigo-600 focus:bg-white focus:ring-4 focus:ring-indigo-100"
+          />
+          <button
+            id="btnQuyDoi"
+            class="rounded-lg bg-indigo-600 px-5 py-2.5 font-semibold text-white transition hover:bg-indigo-700 active:translate-y-px max-sm:w-full"
+          >
+            Quy đổi
+          </button>
+        </div>
+        <p
+          id="pKetQuaQuyDoi"
+          class="mt-4 rounded-lg bg-indigo-50 px-4 py-3 font-medium text-indigo-800 empty:hidden"
+        ></p>
+      </section>
+
+      <!-- Bài 4: Hình chữ nhật -->
+      <section
+        class="mb-5 rounded-2xl border border-l-4 border-slate-200 border-l-indigo-600 bg-white p-6 shadow-md"
+      >
+        <h2 class="mb-4 text-lg font-semibold">
+          Tính diện tích và chu vi hình chữ nhật
+        </h2>
+        <div class="flex flex-wrap gap-2.5">
+          <input
+            id="chieuDai"
+            type="number"
+            placeholder="Nhập chiều dài"
+            class="min-w-[140px] flex-1 rounded-lg border border-slate-200 bg-slate-50 px-3.5 py-2.5 outline-none transition focus:border-indigo-600 focus:bg-white focus:ring-4 focus:ring-indigo-100"
+          />
+          <input
+            id="chieuRong"
+            type="number"
+            placeholder="Nhập chiều rộng"
+            class="min-w-[140px] flex-1 rounded-lg border border-slate-200 bg-slate-50 px-3.5 py-2.5 outline-none transition focus:border-indigo-600 focus:bg-white focus:ring-4 focus:ring-indigo-100"
+          />
+          <button
+            id="btnTinhHcn"
+            class="rounded-lg bg-indigo-600 px-5 py-2.5 font-semibold text-white transition hover:bg-indigo-700 active:translate-y-px max-sm:w-full"
+          >
+            Tính
+          </button>
+        </div>
+        <p
+          id="pKetQuaHcn"
+          class="mt-4 rounded-lg bg-indigo-50 px-4 py-3 font-medium text-indigo-800 empty:hidden"
+        ></p>
+      </section>
+
+      <!-- Bài 5: Trung bình cộng -->
+      <section
+        class="mb-5 rounded-2xl border border-l-4 border-slate-200 border-l-indigo-600 bg-white p-6 shadow-md"
+      >
+        <h2 class="mb-4 text-lg font-semibold">Tính giá trị trung bình</h2>
+        <div class="flex flex-wrap gap-2.5">
+          <!-- id có đuôi "TB" để khớp với dom.js -->
+          <input
+            id="soThu1TB"
+            type="number"
+            placeholder="Số thứ 1"
+            class="min-w-[140px] flex-1 rounded-lg border border-slate-200 bg-slate-50 px-3.5 py-2.5 outline-none transition focus:border-indigo-600 focus:bg-white focus:ring-4 focus:ring-indigo-100"
+          />
+          <input
+            id="soThu2TB"
+            type="number"
+            placeholder="Số thứ 2"
+            class="min-w-[140px] flex-1 rounded-lg border border-slate-200 bg-slate-50 px-3.5 py-2.5 outline-none transition focus:border-indigo-600 focus:bg-white focus:ring-4 focus:ring-indigo-100"
+          />
+          <input
+            id="soThu3TB"
+            type="number"
+            placeholder="Số thứ 3"
+            class="min-w-[140px] flex-1 rounded-lg border border-slate-200 bg-slate-50 px-3.5 py-2.5 outline-none transition focus:border-indigo-600 focus:bg-white focus:ring-4 focus:ring-indigo-100"
+          />
+          <input
+            id="soThu4TB"
+            type="number"
+            placeholder="Số thứ 4"
+            class="min-w-[140px] flex-1 rounded-lg border border-slate-200 bg-slate-50 px-3.5 py-2.5 outline-none transition focus:border-indigo-600 focus:bg-white focus:ring-4 focus:ring-indigo-100"
+          />
+          <input
+            id="soThu5TB"
+            type="number"
+            placeholder="Số thứ 5"
+            class="min-w-[140px] flex-1 rounded-lg border border-slate-200 bg-slate-50 px-3.5 py-2.5 outline-none transition focus:border-indigo-600 focus:bg-white focus:ring-4 focus:ring-indigo-100"
+          />
+          <button
+            id="btnTinhTrungBinh"
+            class="rounded-lg bg-indigo-600 px-5 py-2.5 font-semibold text-white transition hover:bg-indigo-700 active:translate-y-px max-sm:w-full"
+          >
+            Tính trung bình
+          </button>
+        </div>
+        <p
+          id="pKetQuaTrungBinh"
+          class="mt-4 rounded-lg bg-indigo-50 px-4 py-3 font-medium text-indigo-800 empty:hidden"
+        ></p>
+      </section>
+    </main>
+
+    <script src="./dom.js"></script>
+  </body>
+</html>
